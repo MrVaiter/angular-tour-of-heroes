@@ -22,12 +22,13 @@
     display: flex;
     align-items: stretch;
     height: 1.8em;
+    transition: 0.2s;
   }
   
   .heroes button:hover {
     color: #2c3a41;
     background-color: #e6e6e6;
-    left: .1em;
+    left: .3em;
   }
   
   .heroes button:active {
@@ -38,6 +39,7 @@
   .heroes button.selected {
     background-color: black;
     color: white;
+    left: .3em;
   }
   
   .heroes button.selected:hover {
