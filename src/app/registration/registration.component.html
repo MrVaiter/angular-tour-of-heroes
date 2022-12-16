@@ -3,13 +3,13 @@
     <h1>Registration</h1>
 
     <label for="reg-login-box">Login: </label>
-    <input id="reg-login-box" placeholder=" ">
+    <input id="reg-login-box" placeholder=" " [(ngModel)]="newAccount!.login">
 
     <label for="reg-email-box">Email: </label>
-    <input id="reg-email-box" placeholder=" ">
+    <input id="reg-email-box" placeholder=" " [(ngModel)]="newAccount!.email">
 
     <label for="reg-password-box">Password: </label>
-    <input id="reg-password-box" placeholder=" ">
+    <input id="reg-password-box" placeholder=" " [(ngModel)]="newAccount!.password">
 
     <div class="reg-buttons">
         <button>Registration</button>
