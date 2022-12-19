@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Account } from '../account';
 import { AccountService } from '../account.service';
@@ -17,7 +18,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private accountService: AccountService) {
+    private accountService: AccountService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -28,7 +30,18 @@ export class RegistrationComponent implements OnInit {
   }
 
   registerNewAccount() {
-    
+    if(!this.newAccount){
+      return;
+    }
+
+    return new Promise( (resolve, reject) => {
+      this.accountService.addAccount(this.newAccount!).subscribe();
+      resolve('heroes');
+    }).then(
+      (page) => {
+        setTimeout(() => this.router.navigate([page]), 1000);
+      }
+    );
   }
 
   clearForm() {
