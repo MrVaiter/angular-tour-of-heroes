@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Account } from '../account';
 import { AccountService } from '../account.service';
@@ -10,24 +10,25 @@ import { MessageService } from '../message.service';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
 
-  newAccount: Account = {
-    id: 3,
-    login: '',
-    email: '',
-    password: '',
-    role: 'user'
-  };
+  newAccount: Account | undefined;
+  accounts: Account[] = [];
 
   constructor(
     private messageService: MessageService,
-    private accountService: AccountService) { 
-      
-    }
+    private accountService: AccountService) {
+  }
 
-  registerNewAccount(){
-    this.accountService.getAllAccounts
+  ngOnInit(): void {
+    this.clearForm();
+
+    this.accountService.getAccounts()
+      .subscribe(accounts => this.accounts = accounts);
+  }
+
+  registerNewAccount() {
+    
   }
 
   clearForm() {
