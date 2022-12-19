@@ -12,7 +12,7 @@
     <input id="reg-password-box" placeholder=" " [(ngModel)]="newAccount!.password">
 
     <div class="reg-buttons">
-        <button>Registration</button>
+        <button (click)="registerNewAccount()">Registration</button>
         <button (click)="clearForm()">Clear</button>
     </div>
 </div>

@@ -7,17 +7,21 @@ import { MessageService } from '../message.service';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent{
+export class RegistrationComponent {
 
-  newAccount?: Account;
+  newAccount: Account | undefined;
 
-  constructor(private messageService: MessageService){ }
+  constructor(private messageService: MessageService) { }
 
-  clearForm(){
+  registerNewAccount(){}
+
+  clearForm() {
     this.newAccount = {
+      id: 3,
       login: "",
       email: "",
-      password: ""
+      password: "",
+      role: "user"
     };
   }
 
