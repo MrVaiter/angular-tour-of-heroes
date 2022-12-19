@@ -12,7 +12,7 @@ import { catchError, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AccountService{
+export class AccountService {
 
   private accountUrl = 'api/accounts';
 
@@ -29,6 +29,14 @@ export class AccountService{
       .pipe(
         tap(_ => this.log('fetched accounts')),
         catchError(this.handleError<Account[]>('getAccounts', []))
+      );
+  }
+
+  addAccount(newAccount: Account): Observable<Account> {
+    return this.http.post<Account>(this.accountUrl, newAccount, this.httpOptions)
+      .pipe(
+        tap((newAcc: Account) => this.log(`added new account ${newAcc.id}|${newAcc.login}|${newAcc.email}`)),
+        catchError(this.handleError<Account>('addAccount'))
       );
   }
 
