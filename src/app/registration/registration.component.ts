@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+
 import { Account } from '../account';
+import { AccountService } from '../account.service';
+
 import { MessageService } from '../message.service';
 
 @Component({
@@ -9,11 +12,23 @@ import { MessageService } from '../message.service';
 })
 export class RegistrationComponent {
 
-  newAccount: Account | undefined;
+  newAccount: Account = {
+    id: 3,
+    login: '',
+    email: '',
+    password: '',
+    role: 'user'
+  };
 
-  constructor(private messageService: MessageService) { }
+  constructor(
+    private messageService: MessageService,
+    private accountService: AccountService) { 
+      
+    }
 
-  registerNewAccount(){}
+  registerNewAccount(){
+    this.accountService.getAllAccounts
+  }
 
   clearForm() {
     this.newAccount = {

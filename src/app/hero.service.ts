@@ -31,18 +31,18 @@ export class HeroService {
       );
   }
 
-  getHeroNo404<Data>(id: number): Observable<Hero> {
-    const url = `${this.heroesUrl}/?id=${id}`;
-    return this.http.get<Hero[]>(url)
-      .pipe(
-        map(heroes => heroes[0]),
-        tap(h => {
-          const outcome = h ? 'fetched' : 'did not find';
-          this.log(`${outcome} hero id=${id}`);
-        }),
-        catchError(this.handleError<Hero>(`getHero id=${id}`))
-      );
-  }
+  // getHeroNo404<Data>(id: number): Observable<Hero> {
+  //   const url = `${this.heroesUrl}/?id=${id}`;
+  //   return this.http.get<Hero[]>(url)
+  //     .pipe(
+  //       map(heroes => heroes[0]),
+  //       tap(h => {
+  //         const outcome = h ? 'fetched' : 'did not find';
+  //         this.log(`${outcome} hero id=${id}`);
+  //       }),
+  //       catchError(this.handleError<Hero>(`getHero id=${id}`))
+  //     );
+  // }
 
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
