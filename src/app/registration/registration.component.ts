@@ -23,25 +23,33 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.clearForm();
+    this.accountService.getAccounts().subscribe(accounts => {
+      this.accounts = accounts;
+    });
 
-    this.accountService.getAccounts()
-      .subscribe(accounts => this.accounts = accounts);
+    this.clearForm();
   }
 
   registerNewAccount() {
-    if(!this.newAccount){
-      return;
-    }
+    
+
+    this.genId();
 
     this.accountService.addAccount(this.newAccount!).subscribe(
-      () => this.router.navigate(['heroes'])
+      () => {
+        this.accounts.push(this.newAccount!);
+        this.router.navigate(['heroes']);
+      }
     );
+  }
+
+  genId() {
+    this.newAccount!.id = this.accounts.length + 1;
   }
 
   clearForm() {
     this.newAccount = {
-      id: 3,
+      id: 0,
       login: "",
       email: "",
       password: "",
