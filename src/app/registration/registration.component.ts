@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Account } from '../account';
 import { AccountService } from '../account.service';
-
-import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-registration',
@@ -13,13 +12,19 @@ import { MessageService } from '../message.service';
 })
 export class RegistrationComponent implements OnInit {
 
-  newAccount: Account | undefined;
   accounts: Account[] = [];
+  myForm: FormGroup;
 
   constructor(
-    private messageService: MessageService,
     private accountService: AccountService,
     private router: Router) {
+
+    this.myForm = new FormGroup({
+      "userLogin": new FormControl("", Validators.required),
+      "userEmail": new FormControl("", [Validators.required, Validators.email]),
+      "userPassword": new FormControl("", [Validators.required, Validators.minLength(6)])
+    });
+
   }
 
   ngOnInit(): void {
@@ -31,30 +36,23 @@ export class RegistrationComponent implements OnInit {
   }
 
   registerNewAccount() {
-    
+    let newAccount: Account = {
+      id: this.accounts.length + 1,
+      login: this.myForm.controls['userLogin'].value,
+      email: this.myForm.controls['userEmail'].value,
+      password: this.myForm.controls['userPassword'].value,
+      role: 'user'
+    };
 
-    this.genId();
-
-    this.accountService.addAccount(this.newAccount!).subscribe(
+    this.accountService.addAccount(newAccount!).subscribe(
       () => {
-        this.accounts.push(this.newAccount!);
         this.router.navigate(['heroes']);
       }
     );
   }
 
-  genId() {
-    this.newAccount!.id = this.accounts.length + 1;
-  }
-
   clearForm() {
-    this.newAccount = {
-      id: 0,
-      login: "",
-      email: "",
-      password: "",
-      role: "user"
-    };
+    this.myForm.reset();
   }
 
 }

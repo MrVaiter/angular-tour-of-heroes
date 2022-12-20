@@ -49,3 +49,16 @@ input:not(:placeholder-shown){
 .reg-buttons button:hover{
     background-color: #42545C;
 }
+
+.errorMessage{
+    font-weight: bold;
+    color: rgb(179, 0, 0);
+    font-size: 20px;
+    margin-left: 25px;
+    margin-bottom: 10px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
