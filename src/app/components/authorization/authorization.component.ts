@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { isEmpty } from 'rxjs';
 import { Account } from 'src/app/interfaces/account';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -23,7 +24,7 @@ export class AuthorizationComponent {
     this.myForm = new FormGroup({
       "userLogin": new FormControl("", Validators.required),
       "userPassword": new FormControl("", Validators.required),
-      "secondPassword": new FormControl("", [Validators.required, this.secondPasswordValidator.bind(this)]) 
+      "secondPassword": new FormControl("", [Validators.required, this.secondPasswordValidator.bind(this)])
     });
 
   }
@@ -35,7 +36,17 @@ export class AuthorizationComponent {
   }
 
   authorize() {
-    
+    let searchLogin = this.myForm.get("userLogin")?.value;
+
+    this.accountService.getAccount(searchLogin).subscribe(result => {
+      if(Object.keys(result).length){
+        this.accountError = false;
+        this.router.navigate(['heroes']);
+      } else {
+        this.accountError = true;
+        this.errorMessage = "Unregistered login";
+      }
+    });
   }
 
   redirectToRegistration() {
@@ -48,13 +59,13 @@ export class AuthorizationComponent {
 
   secondPasswordValidator(control: FormControl): { [s: string]: boolean } | null {
 
-    if(this.myForm === undefined){
+    if (this.myForm === undefined) {
       return null;
     }
 
-    if(control.value != this.myForm.get('userPassword')?.value){
-      return {"secondPassword": true};
-    } 
+    if (control.value != this.myForm.get('userPassword')?.value) {
+      return { "secondPassword": true };
+    }
 
     return null;
   }

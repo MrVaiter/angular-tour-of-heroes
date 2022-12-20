@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +45,7 @@ export class AccountService {
 
     return this.http.get<Account>(url)
     .pipe(
-      tap(_ => this.log(`fetched accout ${login}`)),
+      tap(_ => this.log(`fetched account "${login}"`)),
       catchError(this.handleError<Account>(`getAccount`))
     );
   }
