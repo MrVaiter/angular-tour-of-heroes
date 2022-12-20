@@ -1,1 +1,44 @@
-<p>authorization works!</p>
+<div id="authorization-component" class="authorization-component">
+
+    <h1>Authorization</h1>
+
+    <form [formGroup]="myForm" novalidate (ngSubmit)="authorize()">
+        <div class="form-group">
+            <label for="reg-login-box">Login: </label>
+            <input class="form-control" name="login" placeholder=" " formControlName="userLogin">
+
+            <div class="errorMessage"
+                *ngIf="myForm.controls['userLogin'].invalid && myForm.controls['userLogin'].touched">
+                Invalid login
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="reg-password-box">Password: </label>
+            <input class="reg-password-box" placeholder=" " formControlName="userPassword">
+
+            <div class="errorMessage"
+                *ngIf="myForm.controls['userPassword'].invalid && myForm.controls['userPassword'].touched">
+                Invalid password
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="reg-password-box">Repeat password: </label>
+            <input class="reg-password-box" placeholder=" " formControlName="userPassword">
+
+            <div class="errorMessage"
+                *ngIf="myForm.controls['userPassword'].invalid && myForm.controls['userPassword'].touched">
+                Invalid password
+            </div>
+        </div>
+
+    </form>
+
+    <div class="autho-buttons">
+        <button [disabled]="myForm.invalid" (click)="authorize()">Registration</button>
+        <button (click)="clearForm()">Clear</button>
+    </div>
+
+    <button class="reg-button" (click)="redirectToRegistration()">Register new account</button>
+</div>

@@ -1,0 +1,73 @@
+.authorization-component{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin: 0 auto;
+    border: 2px solid #369;
+    border-radius: 15px;
+}
+
+h1{
+    text-align: center;
+}
+
+label{
+    font-weight: bold;
+    color: rgb(24, 47, 70);
+    font-size: 25px;
+    margin-left: 25px;
+}
+
+input{
+    margin-left: 25px;
+    width: 10px;
+    height: 27px;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 3px solid #369;
+    transition: 0.5s;
+    font-size: 20px;
+}
+
+input:focus{
+    width: 290px;
+    outline: none;
+}
+
+input:not(:placeholder-shown){
+    width: 290px;
+}
+
+.autho-buttons{
+    margin-left: 25px;
+}
+
+.autho-buttons button{
+    width: 140px;
+}
+
+.autho-buttons button:hover{
+    background-color: #42545C;
+}
+
+.reg-button{
+    margin-left: 25px;
+    width: 295px;
+}
+
+.reg-button:hover{
+    background-color: #42545C;
+}
+
+.errorMessage{
+    font-weight: bold;
+    color: rgb(179, 0, 0);
+    font-size: 20px;
+    margin-left: 25px;
+    margin-bottom: 10px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+}

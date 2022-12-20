@@ -31,8 +31,6 @@ export class RegistrationComponent implements OnInit {
     this.accountService.getAccounts().subscribe(accounts => {
       this.accounts = accounts;
     });
-
-    this.clearForm();
   }
 
   registerNewAccount() {
