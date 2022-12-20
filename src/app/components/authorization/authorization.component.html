@@ -25,10 +25,10 @@
 
         <div class="form-group">
             <label for="reg-password-box">Repeat password: </label>
-            <input class="reg-password-box" placeholder=" " formControlName="userPassword">
+            <input class="reg-password-box" placeholder=" " formControlName="secondPassword">
 
             <div class="errorMessage"
-                *ngIf="myForm.controls['userPassword'].invalid && myForm.controls['userPassword'].touched">
+                *ngIf="myForm.controls['secondPassword'].invalid && myForm.controls['secondPassword'].touched">
                 Invalid password
             </div>
         </div>

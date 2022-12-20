@@ -20,7 +20,8 @@ export class AuthorizationComponent {
 
     this.myForm = new FormGroup({
       "userLogin": new FormControl("", Validators.required),
-      "userPassword": new FormControl("", Validators.required)
+      "userPassword": new FormControl("", Validators.required),
+      "secondPassword": new FormControl("", [Validators.required, this.secondPasswordValidator.bind(this)]) 
     });
 
   }
@@ -31,16 +32,29 @@ export class AuthorizationComponent {
     });
   }
 
-  authorize(){
-    alert('Hi');
+  authorize() {
+
   }
 
-  redirectToRegistration(){
+  redirectToRegistration() {
     this.router.navigate(['registration']);
   }
 
   clearForm() {
     this.myForm.reset();
+  }
+
+  secondPasswordValidator(control: FormControl): { [s: string]: boolean } | null {
+
+    if(this.myForm === undefined){
+      return null;
+    }
+
+    if(control.value != this.myForm.get('userPassword')?.value){
+      return {"secondPassword": true};
+    } 
+
+    return null;
   }
 
 }
