@@ -44,9 +44,18 @@ export class AuthorizationComponent {
 
         if (result[0].password == this.myForm.get("userPassword")?.value) {
           this.accountError = false;
-          this.router.navigate(['heroes']);
+
+          if (result[0].role == 'admin') { 
+
+            this.accountService.switchToAdmin();
+            this.router.navigate(['heroes']);
+            
+          } else {
+            this.router.navigate(['heroes']);
+          }
+
         }
-        else{
+        else {
           this.errorMessage = "Wrong password";
         }
 

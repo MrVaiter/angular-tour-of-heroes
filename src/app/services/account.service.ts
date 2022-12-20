@@ -14,6 +14,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class AccountService {
 
+  private isAdmin: boolean = false;
+
   private accountUrl = 'api/accounts';
 
   httpOptions = {
@@ -48,6 +50,14 @@ export class AccountService {
       tap(_ => this.log(`fetched account "${login}"`)),
       catchError(this.handleError<Account[]>(`getAccount`))
     );
+  }
+
+  checkAdminRole(){
+    return this.isAdmin;
+  }
+
+  switchToAdmin(){
+    this.isAdmin = true;
   }
 
   private log(message: string) {
