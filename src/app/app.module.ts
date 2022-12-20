@@ -16,6 +16,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { RegistrationComponent } from './components/registration/registration.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthorizationComponent } from './components/authorization/authorization.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AuthorizationComponent
   ],
   imports: [
     BrowserModule,
