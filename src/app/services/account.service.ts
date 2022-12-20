@@ -40,13 +40,13 @@ export class AccountService {
       );
   }
 
-  getAccount(login: string): Observable<Account>{
+  getAccount(login: string): Observable<Account[]>{
     const url = `${this.accountUrl}/?login=${login}`;
 
-    return this.http.get<Account>(url)
+    return this.http.get<Account[]>(url)
     .pipe(
       tap(_ => this.log(`fetched account "${login}"`)),
-      catchError(this.handleError<Account>(`getAccount`))
+      catchError(this.handleError<Account[]>(`getAccount`))
     );
   }
 

@@ -39,13 +39,22 @@ export class AuthorizationComponent {
     let searchLogin = this.myForm.get("userLogin")?.value;
 
     this.accountService.getAccount(searchLogin).subscribe(result => {
-      if(Object.keys(result).length){
-        this.accountError = false;
-        this.router.navigate(['heroes']);
+
+      if (Object.keys(result).length) {
+
+        if (result[0].password == this.myForm.get("userPassword")?.value) {
+          this.accountError = false;
+          this.router.navigate(['heroes']);
+        }
+        else{
+          this.errorMessage = "Wrong password";
+        }
+
       } else {
-        this.accountError = true;
         this.errorMessage = "Unregistered login";
       }
+
+      this.accountError = true;
     });
   }
 
