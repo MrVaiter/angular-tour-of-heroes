@@ -22,7 +22,7 @@ export class RegistrationComponent implements OnInit {
     this.myForm = new FormGroup({
       "userLogin": new FormControl("", Validators.required),
       "userEmail": new FormControl("", [Validators.required, Validators.email]),
-      "userPassword": new FormControl("", [Validators.required, Validators.minLength(6)])
+      "userPassword": new FormControl("", Validators.required)
     });
 
   }
