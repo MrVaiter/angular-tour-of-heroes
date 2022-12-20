@@ -36,9 +36,13 @@
     </form>
 
     <div class="autho-buttons">
-        <button [disabled]="myForm.invalid" (click)="authorize()">Registration</button>
+        <button [disabled]="myForm.invalid" (click)="authorize()">Authorize</button>
         <button (click)="clearForm()">Clear</button>
     </div>
 
     <button class="reg-button" (click)="redirectToRegistration()">Register new account</button>
+
+    <div class="errorMessage" *ngIf="accountError">
+        <p>{{errorMessage}}</p>
+    </div>
 </div>

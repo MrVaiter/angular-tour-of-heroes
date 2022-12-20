@@ -13,6 +13,8 @@ export class AuthorizationComponent {
 
   accounts: Account[] = [];
   myForm: FormGroup;
+  accountError: boolean = false;
+  errorMessage: string = "Error";
 
   constructor(
     private accountService: AccountService,
@@ -33,7 +35,7 @@ export class AuthorizationComponent {
   }
 
   authorize() {
-
+    
   }
 
   redirectToRegistration() {
