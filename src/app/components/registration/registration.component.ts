@@ -20,9 +20,9 @@ export class RegistrationComponent implements OnInit {
     private router: Router) {
 
     this.myForm = new FormGroup({
-      "userLogin": new FormControl("", Validators.required),
+      "userLogin": new FormControl("", [Validators.required, Validators.minLength(4)]),
       "userEmail": new FormControl("", [Validators.required, Validators.email]),
-      "userPassword": new FormControl("", Validators.required)
+      "userPassword": new FormControl("", [Validators.required, Validators.minLength(8)])
     });
 
   }
@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
 
     this.accountService.addAccount(newAccount!).subscribe(
       () => {
-        this.router.navigate(['heroes']);
+        this.router.navigate(['authorization']);
       }
     );
   }
