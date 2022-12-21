@@ -16,12 +16,13 @@ export class AccountService {
 
   private accountUrl = 'api/accounts';
 
-  private _role: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  private _role: BehaviorSubject<string> = new BehaviorSubject<string>(document.cookie);
   get role(): Observable<string> {
     return this._role.asObservable();
   }
   set role(role: any) {
     this._role.next(role);
+    document.cookie = role;
   }
 
   httpOptions = {
