@@ -17,6 +17,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthorizationComponent } from './components/authorization/authorization.component';
+import { TeamsListComponent } from './components/teams-list/teams-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthorizationComponent } from './components/authorization/authorization
     DashboardComponent,
     HeroSearchComponent,
     RegistrationComponent,
-    AuthorizationComponent
+    AuthorizationComponent,
+    TeamsListComponent
   ],
   imports: [
     BrowserModule,

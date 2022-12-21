@@ -32,6 +32,11 @@ export class AuthorizationComponent implements OnInit {
     this.accountService.getAccounts().subscribe(accounts => {
       this.accounts = accounts;
     });
+
+    // If we want to instant redirect authorized users
+    // if(document.cookie != ""){
+    //   this.router.navigate(['heroes']);
+    // }
   }
 
   authorize() {
