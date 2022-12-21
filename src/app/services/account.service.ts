@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { MessageService } from './message.service';
 
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -14,8 +14,15 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class AccountService {
 
-  private _role: string = "";
   private accountUrl = 'api/accounts';
+
+  private _role: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  get role(): Observable<string> {
+    return this._role.asObservable();
+  }
+  set role(role: any) {
+    this._role.next(role);
+  }
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -41,21 +48,14 @@ export class AccountService {
       );
   }
 
-  getAccount(login: string): Observable<Account[]>{
+  getAccount(login: string): Observable<Account[]> {
     const url = `${this.accountUrl}/?login=${login}`;
 
     return this.http.get<Account[]>(url)
-    .pipe(
-      tap(_ => this.log(`fetched account "${login}"`)),
-      catchError(this.handleError<Account[]>(`getAccount`))
-    );
-  }
-
-  public get role(): string{
-    return this._role;
-  }
-  public set role(role: string){
-    this._role = role;
+      .pipe(
+        tap(_ => this.log(`fetched account "${login}"`)),
+        catchError(this.handleError<Account[]>(`getAccount`))
+      );
   }
 
   private log(message: string) {

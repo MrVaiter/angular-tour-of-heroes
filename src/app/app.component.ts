@@ -8,8 +8,15 @@ import { AccountService } from './services/account.service';
 })
 export class AppComponent {
   title = 'Tour of Heroes';
+  isAuthorize = false;
+  isAdmin = false;
 
-  constructor(private accountService: AccountService) {}
+  constructor(public accountService: AccountService) {
+    accountService.role.subscribe(role => {
+      this.isAuthorize = (role != "");
+      this.isAdmin = (role == "admin")
+    })
+  }
 
-  isAuthorized = false;
+
 }
