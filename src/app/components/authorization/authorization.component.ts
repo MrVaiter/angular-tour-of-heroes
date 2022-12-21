@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { isEmpty } from 'rxjs';
 import { Account } from 'src/app/interfaces/account';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -10,7 +9,7 @@ import { AccountService } from 'src/app/services/account.service';
   templateUrl: './authorization.component.html',
   styleUrls: ['./authorization.component.css']
 })
-export class AuthorizationComponent {
+export class AuthorizationComponent implements OnInit {
 
   accounts: Account[] = [];
   myForm: FormGroup;
@@ -45,9 +44,9 @@ export class AuthorizationComponent {
         if (result[0].password == this.myForm.get("userPassword")?.value) {
           this.accountError = false;
 
+          this.accountService.role = result[0].role;
           if (result[0].role == 'admin') { 
 
-            this.accountService.switchToAdmin();
             this.router.navigate(['heroes']);
             
           } else {

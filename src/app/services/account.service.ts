@@ -7,15 +7,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  private isAdmin: boolean = false;
-
+  private _role: string = "";
   private accountUrl = 'api/accounts';
 
   httpOptions = {
@@ -52,12 +51,11 @@ export class AccountService {
     );
   }
 
-  checkAdminRole(){
-    return this.isAdmin;
+  public get role(): string{
+    return this._role;
   }
-
-  switchToAdmin(){
-    this.isAdmin = true;
+  public set role(role: string){
+    this._role = role;
   }
 
   private log(message: string) {
