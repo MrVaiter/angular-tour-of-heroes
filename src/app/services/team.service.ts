@@ -30,8 +30,14 @@ export class TeamService {
     );
   }
 
+  addTeam(newTeam: Team): Observable<Team>{
+    return this.http.post<Team>(this.teamUrl, newTeam, this.httpOptions)
+    .pipe(
+      tap((newTeam: Team) => this.log(`added new team ${newTeam.id}|${newTeam.name}`)),
+      catchError(this.handleError<Team>('addTeam'))
+    );
+  }
 
-  
   private log(message: string) {
     this.messageService.add(`AccountService: ${message}`);
   }
