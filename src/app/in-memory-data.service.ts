@@ -8,6 +8,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
     createDb() {
         const heroes = [
+            { id: 1, name: 'Tornado' },
             { id: 2, name: 'Dr. Nice' },
             { id: 3, name: 'Bombasto' },
             { id: 4, name: 'Celeritas' },
@@ -15,8 +16,7 @@ export class InMemoryDataService implements InMemoryDbService {
             { id: 6, name: 'RubberMan' },
             { id: 7, name: 'Dynama' },
             { id: 8, name: 'Dr. IQ' },
-            { id: 9, name: 'Magma' },
-            { id: 0, name: 'Tornado' }
+            { id: 9, name: 'Magma' }
         ];
         const accounts = [
             { id: 1, login: 'admin', email: 'admin@admin', password: 'adminadmin', role: 'admin' },

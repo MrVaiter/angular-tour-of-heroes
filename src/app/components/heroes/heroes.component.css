@@ -17,10 +17,15 @@ input {
 .heroes li {
   position: relative;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .heroes li:hover {
-  left: .1em;
+  margin-left: 1em;
+}
+
+.heroes li:hover button.delete{
+  margin-left: -0.9em;
 }
 
 .heroes a {
@@ -82,6 +87,7 @@ button.delete {
   font-size: 1.1rem;
   margin: 0;
   padding: 1px 10px 3px 10px;
+  transition: 0.3s;
 }
 
 button.delete:hover {

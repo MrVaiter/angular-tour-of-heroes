@@ -1,0 +1,114 @@
+.teams-desk {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+}
+
+.team-block {
+    background-color: #e8e8e8;
+    border: 1px solid rgb(30, 59, 88);
+    border-radius: 10px;
+    color: #369;
+    width: 300px;
+}
+
+.team-block h3 {
+    font-weight: bold;
+    text-align: center;
+    color: #369;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.team-block>button {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+    border: 1px solid rgb(30, 59, 88);
+    width: 250px;
+    margin-left: 25px;
+}
+
+.members-list {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 16.5em;
+}
+
+.members-list li {
+    margin-left: 18px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.members-list li:hover {
+    margin-left: 2em;
+    width: 15.6em;
+}
+
+.members-list li:hover button.delete {
+    margin-left: -0.8em;
+}
+
+.members-list a {
+    color: #333;
+    text-decoration: none;
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.6em;
+    display: block;
+    width: 100%;
+    background-color: rgb(207, 207, 207);
+    border-radius: 4px;
+}
+
+.members-list a:hover {
+    color: #ffffff;
+    background-color: #888888;
+}
+
+.members-list a:active {
+    background-color: #525252;
+    color: #fafafa;
+}
+
+.badge {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color: #405061;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -4px;
+    height: 1.8em;
+    min-width: 16px;
+    text-align: right;
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px;
+}
+
+button.delete {
+    position: absolute;
+    left: 220px;
+    top: 13px;
+    background-color: white;
+    color: #525252;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 1px 10px 3px 10px;
+    transition: 0.3s;
+}
+
+button.delete:hover {
+    background-color: #525252;
+    color: white;
+}
