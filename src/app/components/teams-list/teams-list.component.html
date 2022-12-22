@@ -5,6 +5,17 @@
 
     <div class="team-blocks-table">
 
+        <form [formGroup]="myForm" class="team-block" novalidate>
+            <h3>New team</h3>
+
+            <button (click)="addTeam()" [disabled]="myForm.invalid">
+                Create team
+            </button>
+
+            <label for="team-name-input">Team name</label>
+            <input class="team-name-input" formControlName="teamName">
+        </form>
+
         <div class="team-block" *ngFor="let team of teams">
             <h3>
                 {{team.name}}
@@ -12,7 +23,7 @@
 
             <button *ngIf="isAdmin">Add new player</button>
             <ul class="members-list">
-                
+
                 <li *ngFor="let player of team.members">
                     <a class="team-member">
                         <span class="badge">{{player.id}}</span> {{player.login}}
