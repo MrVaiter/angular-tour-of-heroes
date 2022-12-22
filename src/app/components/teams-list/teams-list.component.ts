@@ -12,6 +12,7 @@ import { TeamService } from 'src/app/services/team.service';
 })
 export class TeamsListComponent implements OnInit {
 
+  isAdmin = document.cookie == 'admin';
   teams: Team[] = [];
   players: Account[] = []
 
@@ -22,13 +23,13 @@ export class TeamsListComponent implements OnInit {
   ngOnInit(): void {
     this.teamService.getTeams().subscribe(teams => {
       this.teams = teams;
-      console.log(this.teams);
     });
 
     this.playerService.getAccounts().subscribe(accounts => {
       this.players = accounts.filter(account => account.role == 'user');
-      console.log(this.players);
     });
   }
+
+
 
 }

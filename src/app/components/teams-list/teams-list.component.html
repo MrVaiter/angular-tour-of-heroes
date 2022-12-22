@@ -5,34 +5,21 @@
 
     <div class="team-blocks-table">
 
-        <div class="team-block">
+        <div class="team-block" *ngFor="let team of teams">
             <h3>
-                NaVi 2011
+                {{team.name}}
             </h3>
 
-            <button>Add new player</button>
+            <button *ngIf="isAdmin">Add new player</button>
             <ul class="members-list">
                 
-                <li>
+                <li *ngFor="let player of team.members">
                     <a class="team-member">
-                        <span class="badge">3</span> Dendi
+                        <span class="badge">{{player.id}}</span> {{player.login}}
                     </a>
-                    <button class="delete">X</button>
+                    <button class="delete" *ngIf="isAdmin">X</button>
                 </li>
 
-                <li>
-                    <a class="team-member">
-                        <span class="badge">4</span> XBOCT
-                    </a>
-                    <button class="delete">X</button>
-                </li>
-
-                <li>
-                    <a class="team-member">
-                        <span class="badge">5</span> Lost
-                    </a>
-                    <button class="delete">X</button>
-                </li>
             </ul>
         </div>
 
