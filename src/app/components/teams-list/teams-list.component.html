@@ -3,6 +3,10 @@
         List of teams
     </h1>
 
+    <div class="shade" *ngIf="isShaded">
+
+    </div>
+
     <div class="team-blocks-table">
 
         <form [formGroup]="myForm" class="team-block" novalidate>
@@ -21,7 +25,7 @@
                 {{team.name}}
             </h3>
 
-            <button *ngIf="isAdmin">Add new player</button>
+            <button *ngIf="isAdmin" (click)="addPlayers(team.id)"> Add new player</button>
             <ul class="members-list">
 
                 <li *ngFor="let player of team.members">

@@ -14,6 +14,7 @@ import { TeamService } from 'src/app/services/team.service';
 export class TeamsListComponent implements OnInit {
 
   isAdmin = document.cookie == 'admin';
+  isShaded = false;
   teams: Team[] = [];
   players: Account[] = [];
   myForm: FormGroup;
@@ -48,6 +49,10 @@ export class TeamsListComponent implements OnInit {
     this.teamService.addTeam(newTeam).subscribe(_ => {
       this.teams.push(newTeam)
     });
+  }
+
+  addPlayers(id: number){
+    this.isShaded = true;
   }
 
 }

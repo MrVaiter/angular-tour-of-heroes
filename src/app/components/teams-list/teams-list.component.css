@@ -140,3 +140,13 @@ button.delete:hover {
     background-color: #525252;
     color: white;
 }
+
+.shade{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.85);
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+    margin-top: -140px;
+    margin-left: -40px;
+}
