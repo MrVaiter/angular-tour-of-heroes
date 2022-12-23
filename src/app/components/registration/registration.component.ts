@@ -34,19 +34,29 @@ export class RegistrationComponent implements OnInit {
   }
 
   registerNewAccount() {
-    let newAccount: Account = {
-      id: this.newId,
-      login: this.myForm.controls['userLogin'].value,
-      email: this.myForm.controls['userEmail'].value,
-      password: this.myForm.controls['userPassword'].value,
-      role: 'user'
-    };
+    const newLogin = this.myForm.controls['userLogin'].value;
 
-    this.accountService.addAccount(newAccount!).subscribe(
-      () => {
-        this.router.navigate(['authorization']);
+    this.accountService.searchAccounts(newLogin).subscribe(result => {
+      if (result.length != 0) {
+        return;
+      } else {
+        let newAccount: Account = {
+          id: this.newId,
+          login: this.myForm.controls['userLogin'].value,
+          email: this.myForm.controls['userEmail'].value,
+          password: this.myForm.controls['userPassword'].value,
+          role: 'user'
+        };
+
+        this.accountService.addAccount(newAccount!).subscribe(
+          () => {
+            this.router.navigate(['authorization']);
+          }
+        );
       }
-    );
+    });
+
+
   }
 
   clearForm() {

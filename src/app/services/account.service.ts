@@ -59,6 +59,19 @@ export class AccountService {
       );
   }
 
+  searchAccounts(term: string): Observable<Account[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+
+    return this.http.get<Account[]>(`${this.accountUrl}/?login=${term}`).pipe(
+      tap(x => x.length ?
+        this.log(`found accounts matching "${term}"`) :
+        this.log(`no accounts matching "${term}"`)),
+      catchError(this.handleError<Account[]>(`searchAccounts`, []))
+    );
+  }
+
   private log(message: string) {
     this.messageService.add(`AccountService: ${message}`);
   }
