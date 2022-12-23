@@ -12,7 +12,7 @@ import { AccountService } from '../../services/account.service';
 })
 export class RegistrationComponent implements OnInit {
 
-  accounts: Account[] = [];
+  newId: number = 0;
   myForm: FormGroup;
 
   constructor(
@@ -29,13 +29,13 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.getAccounts().subscribe(accounts => {
-      this.accounts = accounts;
+      this.newId = accounts.length + 1;
     });
   }
 
   registerNewAccount() {
     let newAccount: Account = {
-      id: this.accounts.length + 1,
+      id: this.newId,
       login: this.myForm.controls['userLogin'].value,
       email: this.myForm.controls['userEmail'].value,
       password: this.myForm.controls['userPassword'].value,
