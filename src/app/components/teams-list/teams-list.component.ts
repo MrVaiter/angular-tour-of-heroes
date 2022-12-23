@@ -43,16 +43,24 @@ export class TeamsListComponent implements OnInit {
   }
 
   addTeam() {
+    const teamName = this.myForm.get('teamName')?.value;
 
-    let newTeam: Team = {
-      id: this.teams.length + 1,
-      name: this.myForm.get('teamName')?.value,
-      members: []
-    };
+    this.teamService.searchTeams(teamName).subscribe(result => {
+      if (result.length != 0) {
+        return;
+      } else {
+        let newTeam: Team = {
+          id: this.teams.length + 1,
+          name: teamName,
+          members: []
+        };
 
-    this.teamService.addTeam(newTeam).subscribe(_ => {
-      this.teams.push(newTeam)
+        this.teamService.addTeam(newTeam).subscribe(_ => {
+          this.teams.push(newTeam)
+        });
+      }
     });
+
   }
 
   showAddPlayersPanel(team: Team) {
@@ -66,7 +74,7 @@ export class TeamsListComponent implements OnInit {
     this.freePlayers = this.players.filter(player => !indexArray.includes(player.id));
   }
 
-  addPlayerToTeam(player: Account, team: Team){
+  addPlayerToTeam(player: Account, team: Team) {
 
     const teamId = this.teams.indexOf(team);
 
@@ -77,15 +85,13 @@ export class TeamsListComponent implements OnInit {
     });
   }
 
-  removePlayerFromTeam(player: Account, team: Team){
+  removePlayerFromTeam(player: Account, team: Team) {
     const teamId = this.teams.indexOf(team);
     const memberId = this.teams[teamId].members.indexOf(player);
 
     this.teams[teamId].members.splice(memberId, 1);
 
-    this.teamService.updateTeam(this.teams[teamId]).subscribe(() => {
-      this.isShaded = false;
-    });
+    this.teamService.updateTeam(this.teams[teamId]).subscribe(() => { });
   }
 
 }

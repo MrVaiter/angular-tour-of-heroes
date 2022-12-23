@@ -46,6 +46,19 @@ export class TeamService {
     );
   }
 
+  searchTeams(term: string): Observable<Team[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+
+    return this.http.get<Team[]>(`${this.teamUrl}/?name=${term}`).pipe(
+      tap(x => x.length ?
+        this.log(`found teams matching "${term}"`) :
+        this.log(`no teams matching "${term}"`)),
+      catchError(this.handleError<Team[]>(`searchTeams`, []))
+    );
+  }
+
   private log(message: string) {
     this.messageService.add(`TeamService: ${message}`);
   }
