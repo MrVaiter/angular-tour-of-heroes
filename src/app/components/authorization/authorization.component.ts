@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Account } from 'src/app/interfaces/account';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -11,7 +10,6 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class AuthorizationComponent implements OnInit {
 
-  accounts: Account[] = [];
   myForm: FormGroup;
   accountError: boolean = false;
   errorMessage: string = "Error";
@@ -29,10 +27,6 @@ export class AuthorizationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountService.getAccounts().subscribe(accounts => {
-      this.accounts = accounts;
-    });
-
     // If we want to instant redirect authorized users
     // if(document.cookie != ""){
     //   this.router.navigate(['heroes']);
