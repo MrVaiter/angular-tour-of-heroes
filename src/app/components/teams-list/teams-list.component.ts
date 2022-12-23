@@ -68,7 +68,13 @@ export class TeamsListComponent implements OnInit {
 
   addPlayerToTeam(player: Account, team: Team){
 
-    
+    const teamId = this.teams.indexOf(team);
+
+    this.teams[teamId].members.push(player);
+
+    this.teamService.updateTeam(this.teams[teamId]).subscribe(() => {
+      this.isShaded = false;
+    });
   }
 
   removePlayerFromTeam(player: Account, team: Team){
