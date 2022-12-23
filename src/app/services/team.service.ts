@@ -38,6 +38,8 @@ export class TeamService {
     );
   }
 
+  
+
   private log(message: string) {
     this.messageService.add(`AccountService: ${message}`);
   }

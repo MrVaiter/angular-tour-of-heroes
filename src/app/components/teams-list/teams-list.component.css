@@ -150,3 +150,20 @@ button.delete:hover {
     margin-top: -140px;
     margin-left: -40px;
 }
+
+.add-players-panel{
+    display: flex;
+    flex-direction: column;
+    background-color: #e8e8e8;
+    border: 1px solid rgb(30, 59, 88);
+    border-radius: 10px;
+    color: #369;
+    width: 320px;
+    margin: 0 auto;
+    margin-top: 15%;
+}
+
+.add-players-panel h3{
+    text-align: center;
+}
+

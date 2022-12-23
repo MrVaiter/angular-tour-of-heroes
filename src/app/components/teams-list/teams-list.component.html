@@ -4,7 +4,19 @@
     </h1>
 
     <div class="shade" *ngIf="isShaded">
+        <div class="add-players-panel">
+            <h3>Add players to {{selectedTeam!.name}}</h3>
 
+            <ul class="members-list">
+
+                <li *ngFor="let player of freePlayers">
+                    <a class="team-member">
+                        <span class="badge">{{player.id}}</span> {{player.login}}
+                    </a>
+                </li>
+
+            </ul>
+        </div>
     </div>
 
     <div class="team-blocks-table">
@@ -25,7 +37,7 @@
                 {{team.name}}
             </h3>
 
-            <button *ngIf="isAdmin" (click)="addPlayers(team.id)"> Add new player</button>
+            <button *ngIf="isAdmin" (click)="showAddPlayersPanel(team)"> Add new player</button>
             <ul class="members-list">
 
                 <li *ngFor="let player of team.members">

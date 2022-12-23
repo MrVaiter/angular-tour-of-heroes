@@ -18,6 +18,8 @@ export class TeamsListComponent implements OnInit {
   teams: Team[] = [];
   players: Account[] = [];
   myForm: FormGroup;
+  selectedTeam: Team = {} as Team;
+  freePlayers: Account[] = [];
 
   constructor(
     private teamService: TeamService,
@@ -31,6 +33,9 @@ export class TeamsListComponent implements OnInit {
   ngOnInit(): void {
     this.teamService.getTeams().subscribe(teams => {
       this.teams = teams;
+
+      // TODO: Видалити затичку
+      this.selectedTeam = this.teams[0];
     });
 
     this.playerService.getAccounts().subscribe(accounts => {
@@ -51,8 +56,15 @@ export class TeamsListComponent implements OnInit {
     });
   }
 
-  addPlayers(id: number){
+  showAddPlayersPanel(team: Team) {
     this.isShaded = true;
+
+    this.selectedTeam = team;
+
+    let indexArray: number[] = [];
+    team.members.forEach(member => indexArray.push(member.id));
+
+    this.freePlayers = this.players.filter(player => !indexArray.includes(player.id));
   }
 
 }
