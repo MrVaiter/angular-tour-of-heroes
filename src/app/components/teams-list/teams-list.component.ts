@@ -15,9 +15,11 @@ export class TeamsListComponent implements OnInit {
 
   isAdmin = document.cookie == 'admin';
   isShaded = false;
+
   teams: Team[] = [];
   players: Account[] = [];
   myForm: FormGroup;
+
   selectedTeam: Team = {} as Team;
   freePlayers: Account[] = [];
 
@@ -33,9 +35,6 @@ export class TeamsListComponent implements OnInit {
   ngOnInit(): void {
     this.teamService.getTeams().subscribe(teams => {
       this.teams = teams;
-
-      // TODO: Видалити затичку
-      this.selectedTeam = this.teams[0];
     });
 
     this.playerService.getAccounts().subscribe(accounts => {
@@ -65,6 +64,22 @@ export class TeamsListComponent implements OnInit {
     team.members.forEach(member => indexArray.push(member.id));
 
     this.freePlayers = this.players.filter(player => !indexArray.includes(player.id));
+  }
+
+  addPlayerToTeam(player: Account, team: Team){
+
+    
+  }
+
+  removePlayerFromTeam(player: Account, team: Team){
+    const teamId = this.teams.indexOf(team);
+    const memberId = this.teams[teamId].members.indexOf(player);
+
+    this.teams[teamId].members.splice(memberId, 1);
+
+    this.teamService.updateTeam(this.teams[teamId]).subscribe(() => {
+      this.isShaded = false;
+    });
   }
 
 }

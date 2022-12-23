@@ -38,10 +38,16 @@ export class TeamService {
     );
   }
 
-  
+  updateTeam(team: Team): Observable<any>{
+    return this.http.put(this.teamUrl, team, this.httpOptions)
+    .pipe(
+      tap(_ => this.log(`updated team id=${team.id}`)),
+      catchError(this.handleError<any>('updateTeam'))
+    );
+  }
 
   private log(message: string) {
-    this.messageService.add(`AccountService: ${message}`);
+    this.messageService.add(`TeamService: ${message}`);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

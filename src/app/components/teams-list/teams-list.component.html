@@ -10,7 +10,7 @@
             <ul class="members-list">
 
                 <li *ngFor="let player of freePlayers">
-                    <a class="team-member">
+                    <a class="team-member" (click)="addPlayerToTeam(player, selectedTeam)">
                         <span class="badge">{{player.id}}</span> {{player.login}}
                     </a>
                 </li>
@@ -44,7 +44,7 @@
                     <a class="team-member">
                         <span class="badge">{{player.id}}</span> {{player.login}}
                     </a>
-                    <button class="delete" *ngIf="isAdmin">X</button>
+                    <button class="delete" *ngIf="isAdmin" (click)="removePlayerFromTeam(player, team)">X</button>
                 </li>
 
             </ul>
