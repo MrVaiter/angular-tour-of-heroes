@@ -14,6 +14,7 @@ export class RegistrationComponent implements OnInit {
 
   newId: number = 0;
   myForm: FormGroup;
+  isDublicate = false;
 
   constructor(
     private accountService: AccountService,
@@ -38,8 +39,11 @@ export class RegistrationComponent implements OnInit {
 
     this.accountService.searchAccounts(newLogin).subscribe(result => {
       if (result.length != 0) {
+        this.isDublicate = true;
         return;
       } else {
+        this.isDublicate = false;
+
         let newAccount: Account = {
           id: this.newId,
           login: this.myForm.controls['userLogin'].value,

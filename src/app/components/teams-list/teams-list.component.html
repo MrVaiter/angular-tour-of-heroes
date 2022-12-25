@@ -32,6 +32,10 @@
 
             <label for="team-name-input">Team name</label>
             <input class="team-name-input" formControlName="teamName">
+
+            <div class="errorMessage" *ngIf="isDublicate">
+                This name has already taken
+            </div>
         </form>
 
         <div class="team-block" *ngFor="let team of teams">

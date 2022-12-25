@@ -11,6 +11,10 @@
                 *ngIf="myForm.controls['userLogin'].invalid && myForm.controls['userLogin'].touched">
                 Invalid login
             </div>
+
+            <div class="errorMessage" *ngIf="isDublicate">
+                This login already registered
+            </div>
         </div>
 
         <div class="form-group">

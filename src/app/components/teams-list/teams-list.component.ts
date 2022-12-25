@@ -23,6 +23,8 @@ export class TeamsListComponent implements OnInit {
   selectedTeam: Team = {} as Team;
   freePlayers: Account[] = [];
 
+  isDublicate = false;
+
   constructor(
     private teamService: TeamService,
     private playerService: AccountService) {
@@ -47,8 +49,10 @@ export class TeamsListComponent implements OnInit {
 
     this.teamService.searchTeams(teamName).subscribe(result => {
       if (result.length != 0) {
+        this.isDublicate = true;
         return;
       } else {
+        this.isDublicate = false;
         let newTeam: Team = {
           id: this.teams.length + 1,
           name: teamName,
