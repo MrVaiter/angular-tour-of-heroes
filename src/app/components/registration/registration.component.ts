@@ -38,9 +38,11 @@ export class RegistrationComponent implements OnInit {
     const newLogin = this.myForm.controls['userLogin'].value;
 
     this.accountService.searchAccounts(newLogin).subscribe(result => {
+
       if (result.length != 0) {
         this.isDublicate = true;
         return;
+
       } else {
         this.isDublicate = false;
 
@@ -59,8 +61,6 @@ export class RegistrationComponent implements OnInit {
         );
       }
     });
-
-
   }
 
   clearForm() {

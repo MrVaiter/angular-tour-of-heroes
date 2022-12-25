@@ -48,11 +48,14 @@ export class TeamsListComponent implements OnInit {
     const teamName = this.myForm.get('teamName')?.value;
 
     this.teamService.searchTeams(teamName).subscribe(result => {
+
       if (result.length != 0) {
         this.isDublicate = true;
         return;
+
       } else {
         this.isDublicate = false;
+
         let newTeam: Team = {
           id: this.teams.length + 1,
           name: teamName,
@@ -79,7 +82,6 @@ export class TeamsListComponent implements OnInit {
   }
 
   addPlayerToTeam(player: Account, team: Team) {
-
     const teamId = this.teams.indexOf(team);
 
     this.teams[teamId].members.push(player);

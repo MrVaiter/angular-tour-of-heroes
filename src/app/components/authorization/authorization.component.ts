@@ -38,20 +38,15 @@ export class AuthorizationComponent implements OnInit {
 
     this.accountService.getAccount(searchLogin).subscribe(result => {
 
-      if (Object.keys(result).length) {
+      let isNoResult = result.length == 0;
+
+      if (isNoResult) {
 
         if (result[0].password == this.myForm.get("userPassword")?.value) {
           this.accountError = false;
 
           this.accountService.role = result[0].role;
-          if (result[0].role == 'admin') { 
-
-            this.router.navigate(['heroes']);
-            
-          } else {
-            this.router.navigate(['heroes']);
-          }
-
+          this.router.navigate(['heroes']);
         }
         else {
           this.errorMessage = "Wrong password";
