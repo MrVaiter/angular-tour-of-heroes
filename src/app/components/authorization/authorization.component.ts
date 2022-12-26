@@ -38,9 +38,9 @@ export class AuthorizationComponent implements OnInit {
 
     this.accountService.getAccount(searchLogin).subscribe(result => {
 
-      let isNoResult = result.length == 0;
+      let isResult = result.length != 0;
 
-      if (isNoResult) {
+      if (isResult) {
 
         if (result[0].password == this.myForm.get("userPassword")?.value) {
           this.accountError = false;
